@@ -1,0 +1,38 @@
+<!--
+    Written by @bysrhq
+    2016, STMIK IKMI Cirebon
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Meta Tag Description -->
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <title>Add Todo List | Todo List Application</title>
+    </head>
+    <body>
+        <div>
+            <h2>Navigation</h2>
+            <ul>
+                <li><a th:href="@{/}" href="toDoForm.html">Back</a></li>
+            </ul>
+        </div>
+
+        <form th:action="@{/new}" action="toDoAddForm.html" th:object="${toDoTitle}" method="post">
+            <table>
+                <tr>
+                    <td><label for="title">ToDo Title</label></td>
+                    <td><input th:field="*{title}" id="title" name="title" type="text"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td></td>
+                    <td><button type="submit">Append</button></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
