@@ -1,0 +1,55 @@
+/*
+    Written by @bysrhq
+    2016, STMIK IKMI Cirebon
+*/
+
+/*
+    Gradle Project Descriptor
+    Set here all of my own project Gradle build configuration
+*/
+
+//set project properties reflecting to maven coordinate
+group = "${group}"
+version = "${version}"
+
+//this buildscript describes org.springframework.boot plugin available for applied
+buildscript {
+    ext.springBootVersion = '1.4.2.RELEASE'
+    
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+//tasks build based on java plugin
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//remote repository
+repositories {
+	mavenCentral()
+}
+
+//dependencies
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web') {
+        exclude module : 'spring-boot-starter-tomcat'
+        exclude group : 'com.fasterxml.jackon.core'
+    }
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtime 'mysql:mysql-connector-java'
+    testCompile'org.springframework.boot:spring-boot-starter-test'
+}
+
+//Gradle Wrapper
+//run it once, and it will deliver application package without pain :D
+task wrapper(type : Wrapper) {
+    gradleVersion = '3.1'
+}
